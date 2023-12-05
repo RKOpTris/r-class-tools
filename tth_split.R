@@ -9,6 +9,7 @@ tth_split <- function(df, var = NULL, test_prop = 0.15, holdout_prop = 0.15, shu
   } else {
     tth_split <- list(df)
   }
+  train_prop <- 1 - test_prop - holdout_prop
   tth_data <- lapply(tth_split, function(df){
     df$.TTH <- sample(c("train", "test", "holdout"), nrow(df), replace = T, prob = c(train_prop, test_prop, holdout_prop))
     df
